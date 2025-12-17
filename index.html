@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nova Tech</title>
+
+  <!-- MAIN STYLE -->
+  <link rel="stylesheet" href="./css/style.css" />
+
+  <!-- FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800&family=Tajawal:wght@200;300;400;500;700;800&display=swap" rel="stylesheet">
+
+  <!-- ICONS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="icon" href="./images/image.png" />
+
+  <!-- BOOTSTRAP -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
+
+  <!-- IONICONS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" />
+
+  <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <style>
+    /* Language Switcher - Inside Header */
+    .header {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+    }
+    
+    .language-switcher {
+      position: relative !important;
+      top: auto !important;
+      right: auto !important;
+      left: auto !important;
+      transform: none !important;
+      display: flex !important;
+      flex-direction: row !important;
+      gap: 0.8rem !important;
+      align-items: center !important;
+    }
+    
+    .lang-btn {
+      border: 1px solid rgba(127, 63, 237, 0.3) !important;
+      background: rgba(15, 21, 36, 0.6) !important;
+      color: #c3c7d9 !important;
+      padding: 0.6rem 1.2rem !important;
+      border-radius: 8px !important;
+      cursor: pointer !important;
+      font-weight: 700 !important;
+      font-size: 1.4rem !important;
+      backdrop-filter: blur(10px) !important;
+      text-decoration: none !important;
+      transition: all 0.3s ease !important;
+    }
+    
+    .lang-btn:hover {
+      transform: translateY(-2px) !important;
+      border-color: rgba(127, 63, 237, 0.6) !important;
+      color: #fff !important;
+      box-shadow: 0 5px 15px rgba(127, 63, 237, 0.4) !important;
+    }
+    
+    .lang-btn.active {
+      background: linear-gradient(135deg, #7f3fed, #ba42ff) !important;
+      border-color: transparent !important;
+      color: #fff !important;
+      box-shadow: 0 0 20px rgba(127, 63, 237, 0.6) !important;
+    }
+    
+    /* Mobile responsive */
+    @media (max-width: 768px) {
+      .language-switcher {
+        position: absolute !important;
+        top: 7rem !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        z-index: 999 !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- STARFIELD CANVAS -->
+  <canvas id="starfield"></canvas>
+  <div id="graffiti-cursor"></div>
+
+  <!-- PAGE PRELOADER -->
+  <div id="preloader">
+    <div class="spinner">
+      <div class="spinner1"></div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <a href="#" class="logo">
+      <img src="./images/WhatsApp Image 2025-12-06 at 13.44.13_038c8a14.jpg" alt="Nova Tech Logo" />
+    </a>
+
+    <div class="fas fa-bars"></div>
+
+    <nav class="navbar">
+      <ul>
+        <li><a href="#home" data-i18n="nav.home">Home</a></li>
+        <li><a href="#about" data-i18n="nav.about">About</a></li>
+        <li><a href="#portfolio" data-i18n="nav.services">Services</a></li>
+        <li><a href="#team" data-i18n="nav.team">Team</a></li>
+        <li><a href="careers.html" data-i18n="nav.career">Career</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+    </nav>
+    
+    <div class="language-switcher">
+      <a href="index.html" class="lang-btn active">EN</a>
+      <a href="index-ar.html" class="lang-btn">AR</a>
+      <a href="index-ku.html" class="lang-btn">KU</a>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section id="home" class="hero-section">
+    <div class="hero-bg-effects">
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+      <div class="hero-orb hero-orb-3"></div>
+    </div>
+
+    <div class="hero-particles">
+      <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
+      <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-logo-wrapper">
+        <img src="./images/Futuristic Nova Tech Design.png" alt="Nova Tech Logo" class="hero-logo" />
+        <div class="logo-glow"></div>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="hero-title-line" data-i18n="hero.titleLine1">Building the Future</span>
+        <span class="hero-title-line hero-title-gradient" data-i18n="hero.titleLine2">with Code & Intelligence</span>
+      </h1>
+
+      <div class="hero-subtitle-wrapper">
+        <p class="hero-subtitle">
+          <span class="typed-text"></span>
+          <span class="cursor">|</span>
+        </p>
+      </div>
+
+      <div class="hero-tags">
+        <span class="hero-tag" data-i18n="hero.tag1">Software Development</span>
+        <span class="hero-tag" data-i18n="hero.tag2">AI Solutions</span>
+        <span class="hero-tag" data-i18n="hero.tag3">Business Systems</span>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="stat-number" data-target="20">0</span>
+          <span class="stat-label" data-i18n="hero.statProjects">Projects</span>
+        </div>
+        <div class="hero-stat">
+          <span class="stat-number" data-target="8">0</span>
+          <span class="stat-label" data-i18n="hero.statClients">Clients</span>
+        </div>
+        <div class="hero-stat">
+          <span class="stat-number" data-target="3">0</span>
+          <span class="stat-label" data-i18n="hero.statYears">Years</span>
+        </div>
+      </div>
+    </div>
+
+    <canvas id="novaRing"></canvas>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="about" class="about">
+    <div class="about-bg-effects">
+      <div class="about-orb about-orb-1"></div>
+      <div class="about-orb about-orb-2"></div>
+    </div>
+
+    <div class="about-grid"></div>
+
+    <h1 class="heading" data-i18n="about.heading">About Nova Tech</h1>
+
+    <div class="row">
+      <div class="content">
+        <h3 data-i18n="about.title">Professional Technology Solutions from Duhok</h3>
+        <p data-i18n="about.desc">
+          Nova Tech is a technology-driven team based in Duhok, delivering modern software solutions for students, startups, and businesses.
+          Our professional team specializes in software development, POS systems, biometric and attendance solutions, database engineering, AI & machine learning, and creative UI/UX design.
+          We focus on building secure, scalable, and practical systems that solve real-world problems and help our clients grow with confidence.
+        </p>
+      </div>
+    </div>
+
+    <div class="about-features">
+      <div class="feature-card">
+        <div class="feature-icon">💡</div>
+        <h4 data-i18n="about.f1Title">Innovation First</h4>
+        <p data-i18n="about.f1Desc">Cutting-edge solutions powered by the latest technologies</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h4 data-i18n="about.f2Title">Client Focused</h4>
+        <p data-i18n="about.f2Desc">Tailored solutions that meet your unique business needs</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🚀</div>
+        <h4 data-i18n="about.f3Title">Growth Driven</h4>
+        <p data-i18n="about.f3Desc">Scalable systems designed to grow with your business</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES SECTION -->
+  <div class="services-section">
+    <div class="services-bg-effects">
+      <div class="services-orb services-orb-1"></div>
+      <div class="services-orb services-orb-2"></div>
+      <div class="services-orb services-orb-3"></div>
+    </div>
+
+    <div class="container">
+      <div class="section-head-1">
+        <h4 id="portfolio">
+          <span data-i18n="services.brand">Nova Tech</span> <span data-i18n="services.heading">Services</span>
+        </h4>
+        <p data-i18n="services.sub">
+          Intelligent solutions for students, startups, and enterprise-level businesses.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-item">
+          <span class="icon feature_box_col_four"><i class="fa fa-cash-register"></i></span>
+          <h6 data-i18n="services.s1Title">POS & Business Systems</h6>
+          <p data-i18n="services.s1Desc">Complete POS platforms with inventory, reporting, invoices, and secure authentication.</p>
+        </div>
+
+        <div class="service-item">
+          <span class="icon feature_box_col_five"><i class="fa fa-fingerprint"></i></span>
+          <h6 data-i18n="services.s2Title">Attendance & Biometric Systems</h6>
+          <p data-i18n="services.s2Desc">Fingerprint-based attendance, access control, and payment systems for institutions and companies.</p>
+        </div>
+
+        <div class="service-item">
+          <span class="icon feature_box_col_six"><i class="fa fa-robot"></i></span>
+          <h6 data-i18n="services.s3Title">AI & Machine Learning</h6>
+          <p data-i18n="services.s3Desc">AI models for image classification, gesture recognition, automation, and smart analytics.</p>
+        </div>
+
+        <div class="service-item">
+          <span class="icon feature_box_col_one"><i class="fa fa-laptop-code"></i></span>
+          <h6 data-i18n="services.s4Title">Student Graduation Projects</h6>
+          <p data-i18n="services.s4Desc">Full support for graduation projects including idea selection, coding, reports, and presentations.</p>
+        </div>
+
+        <div class="service-item">
+          <span class="icon feature_box_col_two"><i class="fa fa-globe"></i></span>
+          <h6 data-i18n="services.s5Title">Web & System Development</h6>
+          <p data-i18n="services.s5Desc">Modern websites, dashboards, and internal systems designed for scalability and performance.</p>
+        </div>
+
+        <div class="service-item">
+          <span class="icon feature_box_col_three"><i class="fa fa-database"></i></span>
+          <h6 data-i18n="services.s6Title">Database Design & Integration</h6>
+          <p data-i18n="services.s6Desc">Secure database architecture, optimization, and integration for academic and business systems.</p>
+        </div>
+
+        <div class="service-item">
+          <span class="icon feature_box_col_four"><i class="fa fa-palette"></i></span>
+          <h6 data-i18n="services.s7Title">Graphic & UI/UX Design</h6>
+          <p data-i18n="services.s7Desc">Brand identity, UI/UX design, posters, social media visuals, and dashboard interfaces.</p>
+        </div>
+
+        <div class="service-item">
+          <span class="icon feature_box_col_five"><i class="fa fa-cloud"></i></span>
+          <h6 data-i18n="services.s8Title">Backend & API Development</h6>
+          <p data-i18n="services.s8Desc">Secure REST APIs, backend systems, and cloud-ready architectures.</p>
+        </div>
+
+        <div class="service-item">
+          <span class="icon feature_box_col_six"><i class="fa fa-chalkboard-teacher"></i></span>
+          <h6 data-i18n="services.s9Title">Training & Technical Mentorship</h6>
+          <p data-i18n="services.s9Desc">Professional mentoring for students and teams in programming, AI, and system design.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA SECTION -->
+  <div class="communicate">
+    <div class="cta-bg-effects">
+      <div class="cta-orb cta-orb-1"></div>
+      <div class="cta-orb cta-orb-2"></div>
+      <div class="cta-orb cta-orb-3"></div>
+    </div>
+
+    <div class="cta-particles">
+      <div class="cta-particle"></div><div class="cta-particle"></div><div class="cta-particle"></div>
+      <div class="cta-particle"></div><div class="cta-particle"></div><div class="cta-particle"></div>
+    </div>
+
+    <div class="cta-decoration">
+      <div class="cta-circle cta-circle-1"></div>
+      <div class="cta-circle cta-circle-2"></div>
+    </div>
+
+    <div class="cta-content">
+      <h3 data-i18n="cta.title">Ready to Start Your Next Project?</h3>
+      <p data-i18n="cta.desc">
+        Whether you are a student or a business, Nova Tech in Duhok is ready to turn your ideas into reliable and powerful digital solutions.
+      </p>
+      <a href="#contact"><button class="btn" data-i18n="cta.btn">Contact Nova Tech</button></a>
+    </div>
+  </div>
+
+  <!-- TEAM SECTION -->
+  <section class="team" id="team">
+    <div class="team-bg-effects">
+      <div class="team-orb team-orb-1"></div>
+      <div class="team-orb team-orb-2"></div>
+    </div>
+
+    <h1 class="heading" data-i18n="team.heading">Our Team</h1>
+
+    <div class="row">
+      <div class="card">
+        <div class="image">
+          <img src="./images/blind bjar.jpg" alt="Bilind Bjar">
+        </div>
+        <div class="info">
+          <h3>Bilind Bjar</h3>
+          <span data-i18n="team.role1">Web Developer</span>
+          <div class="icons">
+            <a href="/cdn-cgi/l/email-protection#83e1efede7e1e9e2f1b3b4c3e4eee2eaefade0ecee"><i class="fas fa-envelope"></i></a>
+            <a href="https://wa.me/9647507308005"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.instagram.com/blndbjar1?igsh=MXdhbzBuY2o4MXo0Mw=="><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+        <div class="accent-line"></div>
+      </div>
+
+      <div class="card">
+        <div class="image">
+          <img src="./images/team-member-1.jpg" alt="Metin Meki">
+        </div>
+        <div class="info">
+          <h3>Metin Meki</h3>
+          <span data-i18n="team.role2">AI & Web Developer</span>
+          <div class="icons">
+            <a href="https://wa.me/9647502365028"><i class="fab fa-whatsapp"></i></a>
+            <a href="/cdn-cgi/l/email-protection#89c4ecfde0e7e4ece2e0b0b0c9eee4e8e0e5a7eae6e4"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.instagram.com/metin_amedi?igsh=N3lncThuaGN4MjB3&utm_source=qr"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/matin-maki-2b6b74326/"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+        <div class="accent-line"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="contact">
+    <div class="contact-bg-effects">
+      <div class="contact-orb contact-orb-1"></div>
+      <div class="contact-orb contact-orb-2"></div>
+    </div>
+
+    <h1 class="heading" data-i18n="contact.heading">Get in touch</h1>
+  </section>
+
+  <div class="contact-in">
+    <div class="contact-map">
+      <iframe
+        src="https://www.google.com/maps?q=36.8594906,43.0002792&z=15&output=embed"
+        width="100%"
+        height="450"
+        style="border:0;"
+        allowfullscreen
+        loading="lazy">
+      </iframe>
+    </div>
+
+    <div class="contact-form">
+      <form action="contactme.php" method="POST">
+        <input type="text" name="name" class="contact-form-txt" required data-i18n-placeholder="form.namePh" placeholder="Name">
+        <input type="tel" name="phone" class="contact-form-phone" required data-i18n-placeholder="form.phonePh" placeholder="Contact number">
+        <input type="email" name="email" class="contact-form-email" required data-i18n-placeholder="form.emailPh" placeholder="Email">
+        <textarea name="message" class="contact-form-txtarea" required data-i18n-placeholder="form.msgPh" placeholder="Your Message"></textarea>
+        <input type="submit" value="Submit" name="submit" class="contact-form-btn" data-i18n-value="form.submit">
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-bg-effects">
+      <div class="footer-orb footer-orb-1"></div>
+      <div class="footer-orb footer-orb-2"></div>
+    </div>
+
+    <div class="footer-container">
+      <div class="footer-col brand">
+        <img src="./images/Futuristic Nova Tech Design.png" alt="Nova Tech">
+        <p data-i18n="footer.brandDesc">
+          Nova Tech is a Duhok-based technology company delivering professional software, AI solutions, and business systems built for scalability and security.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4 data-i18n="footer.quickLinks">Quick Links</h4>
+        <ul>
+          <li><a href="#home" data-i18n="nav.home">Home</a></li>
+          <li><a href="#about" data-i18n="nav.about">About</a></li>
+          <li><a href="#portfolio" data-i18n="nav.services">Services</a></li>
+          <li><a href="#team" data-i18n="nav.team">Team</a></li>
+          <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 data-i18n="footer.services">Services</h4>
+        <ul>
+          <li data-i18n="services.s1Title">POS & Business Systems</li>
+          <li data-i18n="services.s3Title">AI & Machinze Learning</li>
+          <li data-i18n="services.s2Title">Attendance & Biometric Systems</li>
+          <li data-i18n="services.s8Title">Backend & API Development</li>
+          <li data-i18n="services.s4Title">Student Graduation Projects</li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 data-i18n="footer.contact">Contact</h4>
+        <ul class="footer-contact">
+          <li><i class="fas fa-map-marker-alt"></i> <span data-i18n="footer.city">Duhok, Kurdistan</span></li>
+          <li><i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ec82839a8d98898f84ac8b818d8580c28f8381">[email&#160;protected]</a></li>
+          <li><i class="fas fa-phone"></i> +964 750 000 0000</li>
+        </ul>
+
+        <div class="footer-social">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p data-i18n="footer.copy">© 2025 Nova Tech. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- BACK TO TOP -->
+  <a href="#" class="back-to-top"><i class="ion-ios-arrow-up"></i></a>
+
+  <!-- SCRIPTS -->
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/stars.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <link rel="stylesheet" href="./css/contact-form-styles.css" />
+  <script src="./js/contact-form.js"></script>
+  <!-- PRELOADER -->
+  <script>
+    window.addEventListener("load", () => {
+      const loader = document.getElementById("preloader");
+      if (!loader) return;
+
+      setTimeout(() => {
+        loader.classList.add("hidden");
+        setTimeout(() => loader.remove(), 1000);
+      }, 1200);
+    });
+  </script>
+
+  <!-- GRAFFITI CURSOR -->
+  <script>
+    const cursor = document.getElementById("graffiti-cursor");
+    let mouseX = 0, mouseY = 0, posX = 0, posY = 0;
+
+    document.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      const dot = document.createElement("div");
+      dot.className = "graffiti-dot";
+      dot.style.left = mouseX + "px";
+      dot.style.top = mouseY + "px";
+      dot.style.background = `radial-gradient(circle, hsl(${Math.random() * 360}, 100%, 70%), transparent)`;
+      document.body.appendChild(dot);
+      setTimeout(() => dot.remove(), 800);
+    });
+
+    function animate() {
+      posX += (mouseX - posX) * 0.7;
+      posY += (mouseY - posY) * 0.7;
+      cursor.style.left = posX + "px";
+      cursor.style.top = posY + "px";
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+
+  <!-- HERO TYPING + COUNTERS -->
+  <script>
+    const typedTextSpan = document.querySelector(".typed-text");
+    const cursorSpan = document.querySelector(".cursor");
+
+    let textArray = [
+      "Based in Duhok — Built for the World",
+      "Software Development • AI Solutions",
+      "Transform Your Ideas Into Reality"
+    ];
+
+    const typingDelay = 90;
+    const erasingDelay = 45;
+    const newTextDelay = 1600;
+    let textArrayIndex = 0;
+    let charIndex = 0;
+    let typingTimer = null;
+
+    function type() {
+      if (!typedTextSpan) return;
+      if (charIndex < textArray[textArrayIndex].length) {
+        cursorSpan && cursorSpan.classList.add("typing");
+        typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+        charIndex++;
+        typingTimer = setTimeout(type, typingDelay);
+      } else {
+        cursorSpan && cursorSpan.classList.remove("typing");
+        typingTimer = setTimeout(erase, newTextDelay);
+      }
+    }
+
+    function erase() {
+      if (!typedTextSpan) return;
+      if (charIndex > 0) {
+        cursorSpan && cursorSpan.classList.add("typing");
+        typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex - 1);
+        charIndex--;
+        typingTimer = setTimeout(erase, erasingDelay);
+      } else {
+        cursorSpan && cursorSpan.classList.remove("typing");
+        textArrayIndex = (textArrayIndex + 1) % textArray.length;
+        typingTimer = setTimeout(type, 400);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      setTimeout(type, 600);
+    });
+
+    function animateCounter() {
+      const counters = document.querySelectorAll(".stat-number");
+      const speed = 200;
+
+      counters.forEach(counter => {
+        const target = +counter.getAttribute("data-target");
+        const increment = target / speed;
+
+        const updateCount = () => {
+          const count = +counter.innerText;
+          if (count < target) {
+            counter.innerText = Math.ceil(count + increment);
+            setTimeout(updateCount, 10);
+          } else {
+            counter.innerText = target + "+";
+          }
+        };
+
+        updateCount();
+      });
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounter();
+          observer.unobserve(entry.target);
+        }
+      });
+    });
+
+    const heroSection = document.querySelector(".hero-section");
+    if (heroSection) observer.observe(heroSection);
+  </script>
+
+  <!-- Smooth anchor scroll -->
+  <script>
+    function getHeaderOffset() {
+      const header = document.querySelector(".header");
+      return header ? header.offsetHeight + 10 : 80;
+    }
+
+    document.addEventListener("click", (e) => {
+      const a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+
+      const id = a.getAttribute("href");
+      if (!id || id === "#") return;
+
+      const el = document.querySelector(id);
+      if (!el) return;
+
+      e.preventDefault();
+      const top = el.getBoundingClientRect().top + window.pageYOffset - getHeaderOffset();
+      window.scrollTo({ top, behavior: "smooth" });
+    });
+</script>
+<script>
+(function() {
+    'use strict';
+    
+    console.log('Starting 3D Animation...');
+    
+    window.addEventListener('load', function() {
+        
+        const aboutSection = document.querySelector('.about');
+        const aboutHeading = document.querySelector('.about .heading');
+        const content = document.querySelector('.about .row .content');
+        const featureCards = document.querySelectorAll('.feature-card');
+
+        console.log('About Section:', aboutSection);
+        console.log('About Heading:', aboutHeading);
+        console.log('Content:', content);
+        console.log('Feature Cards:', featureCards.length);
+
+        if (!aboutSection || !aboutHeading) {
+            console.error('Elements not found!');
+            return;
+        }
+
+        function checkScroll() {
+            const triggerBottom = window.innerHeight * 0.8;
+
+            if (aboutHeading) {
+                const rect = aboutHeading.getBoundingClientRect();
+                if (rect.top < triggerBottom) {
+                    aboutHeading.classList.add('visible');
+                    console.log('✓ Heading visible');
+                }
+            }
+
+            if (content) {
+                const rect = content.getBoundingClientRect();
+                if (rect.top < triggerBottom) {
+                    content.classList.add('visible');
+                    console.log('✓ Content visible');
+                }
+            }
+
+            featureCards.forEach((card, i) => {
+                const rect = card.getBoundingClientRect();
+                if (rect.top < triggerBottom) {
+                    card.classList.add('visible');
+                    console.log('✓ Card ' + i + ' visible');
+                }
+            });
+        }
+
+        function parallaxEffect() {
+            if (!aboutSection) return;
+
+            const rect = aboutSection.getBoundingClientRect();
+            const scrollProgress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+
+            if (scrollProgress >= 0 && scrollProgress <= 1) {
+                const x = (scrollProgress - 0.5) * 100;
+                const y = (scrollProgress - 0.5) * 100;
+
+                aboutSection.style.setProperty('--scroll-x', x + 'px');
+                aboutSection.style.setProperty('--scroll-y', y + 'px');
+                aboutSection.classList.add('scrolled');
+            }
+        }
+
+        let ticking = false;
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                window.requestAnimationFrame(function() {
+                    checkScroll();
+                    parallaxEffect();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        featureCards.forEach(function(card) {
+            card.addEventListener('mousemove', function(e) {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                card.style.transform = 'translateZ(30px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) scale(1.05)';
+            });
+
+            card.addEventListener('mouseleave', function() {
+                card.style.transform = '';
+            });
+        });
+
+        console.log('Running initial check...');
+        setTimeout(function() {
+            checkScroll();
+        }, 100);
+        
+    });
+})();
+</script>
+</body>
+</html>

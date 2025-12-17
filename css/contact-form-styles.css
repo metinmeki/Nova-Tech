@@ -1,0 +1,347 @@
+/* ========================================
+   Nova Tech - Contact Form Styles
+   ======================================== */
+
+/* تنسيق رسائل التنبيه */
+.form-alert {
+    position: relative;
+    padding: 1.5rem 2rem;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    animation: slideIn 0.5s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+}
+
+.form-alert-success {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.95), rgba(67, 160, 71, 0.95));
+    border-left: 5px solid #2e7d32;
+    color: white;
+}
+
+.form-alert-error {
+    background: linear-gradient(135deg, rgba(244, 67, 54, 0.95), rgba(229, 57, 53, 0.95));
+    border-left: 5px solid #c62828;
+    color: white;
+}
+
+.alert-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+}
+
+.alert-content i {
+    font-size: 1.8rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.alert-content span {
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.alert-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.alert-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+.alert-close i {
+    font-size: 1rem;
+}
+
+/* تنسيق رسائل الخطأ للحقول */
+.field-error {
+    display: block;
+    color: #ff4444;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    padding: 0.3rem 0.5rem;
+    background: rgba(255, 68, 68, 0.1);
+    border-radius: 4px;
+    animation: shake 0.5s ease;
+}
+
+.field-invalid {
+    border-color: #ff4444 !important;
+    background: rgba(255, 68, 68, 0.05) !important;
+    animation: shake 0.5s ease;
+}
+
+.field-invalid:focus {
+    box-shadow: 0 0 0 3px rgba(255, 68, 68, 0.2) !important;
+}
+
+/* عداد الأحرف */
+.char-counter {
+    text-align: left;
+    color: #7f3fed;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+/* تحسين تنسيق حقول النموذج */
+.contact-form-txt,
+.contact-form-phone,
+.contact-form-email,
+.contact-form-txtarea {
+    width: 100%;
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 2px solid rgba(127, 63, 237, 0.2);
+    border-radius: 10px;
+    background: rgba(15, 21, 36, 0.6);
+    color: #fff;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.contact-form-txt:focus,
+.contact-form-phone:focus,
+.contact-form-email:focus,
+.contact-form-txtarea:focus {
+    outline: none;
+    border-color: #7f3fed;
+    background: rgba(15, 21, 36, 0.8);
+    box-shadow: 0 0 0 3px rgba(127, 63, 237, 0.2);
+    transform: translateY(-2px);
+}
+
+.contact-form-txtarea {
+    min-height: 150px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+/* زر الإرسال */
+.contact-form-btn {
+    width: 100%;
+    padding: 1.2rem 2rem;
+    background: linear-gradient(135deg, #7f3fed, #ba42ff);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(127, 63, 237, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-form-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.contact-form-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.contact-form-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(127, 63, 237, 0.6);
+}
+
+.contact-form-btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(127, 63, 237, 0.4);
+}
+
+.contact-form-btn:disabled {
+    background: linear-gradient(135deg, #666, #888);
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+/* Placeholder styling */
+.contact-form-txt::placeholder,
+.contact-form-phone::placeholder,
+.contact-form-email::placeholder,
+.contact-form-txtarea::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 400;
+}
+
+/* الرسوم المتحركة */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+/* تأثير التحميل */
+.contact-form-btn:disabled::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@keyframes spin {
+    to { transform: translateY(-50%) rotate(360deg); }
+}
+
+/* التوافق مع الشاشات الصغيرة */
+@media (max-width: 768px) {
+    .form-alert {
+        padding: 1rem 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .alert-content span {
+        font-size: 1rem;
+    }
+
+    .contact-form-txt,
+    .contact-form-phone,
+    .contact-form-email,
+    .contact-form-txtarea {
+        padding: 1rem 1.2rem;
+        font-size: 0.95rem;
+    }
+
+    .contact-form-btn {
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+/* تحسينات إضافية للنموذج */
+.contact-form {
+    position: relative;
+}
+
+/* أيقونات الحقول */
+.contact-form-txt,
+.contact-form-phone,
+.contact-form-email {
+    padding-left: 3rem;
+}
+
+/* تأثيرات التركيز المتقدمة */
+.contact-form-txt:focus,
+.contact-form-phone:focus,
+.contact-form-email:focus,
+.contact-form-txtarea:focus {
+    box-shadow: 
+        0 0 0 3px rgba(127, 63, 237, 0.2),
+        0 8px 20px rgba(127, 63, 237, 0.3);
+}
+
+/* تأثير النجاح على الحقول */
+.field-valid {
+    border-color: #4caf50 !important;
+    background: rgba(76, 175, 80, 0.05) !important;
+}
+
+.field-valid:focus {
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2) !important;
+}
+
+/* مؤشر التحقق الناجح */
+.field-valid::after {
+    content: '✓';
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #4caf50;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* تأثير ripple على الأزرار */
+.contact-form-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    animation: ripple-animation 0.6s linear;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>اختبار نموذج الاتصال - Nova Tech</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f1524, #1a1f35);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(127, 63, 237, 0.3);
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            color: #c3c7d9;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(15, 21, 36, 0.6);
+            border: 2px solid rgba(127, 63, 237, 0.2);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #7f3fed;
+            box-shadow: 0 0 0 3px rgba(127, 63, 237, 0.2);
+        }
+        
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+            font-family: inherit;
+        }
+        
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #7f3fed, #ba42ff);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(127, 63, 237, 0.4);
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(127, 63, 237, 0.6);
+        }
+        
+        button:active {
+            transform: translateY(-1px);
+        }
+        
+        .error {
+            color: #ff4444;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .success-message {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.95), rgba(67, 160, 71, 0.95));
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .note {
+            color: #c3c7d9;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 20px;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📧 نموذج الاتصال</h1>
+        
+        <div class="success-message" id="successMsg">
+            ✅ تم إرسال رسالتك بنجاح! سنتواصل معك قريباً
+        </div>
+        
+        <form action="contactme.php" method="POST" id="contactForm">
+            <div class="form-group">
+                <label for="name">الاسم *</label>
+                <input type="text" id="name" name="name" required minlength="2" maxlength="100">
+                <span class="error" id="nameError">الاسم يجب أن يكون حرفين على الأقل</span>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">رقم الهاتف *</label>
+                <input type="tel" id="phone" name="phone" required pattern="[0-9+\-\s\(\)]+" minlength="10">
+                <span class="error" id="phoneError">رقم الهاتف غير صحيح</span>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">البريد الإلكتروني *</label>
+                <input type="email" id="email" name="email" required>
+                <span class="error" id="emailError">البريد الإلكتروني غير صحيح</span>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">الرسالة *</label>
+                <textarea id="message" name="message" required minlength="10" maxlength="1000"></textarea>
+                <span class="error" id="messageError">الرسالة يجب أن تكون 10 أحرف على الأقل</span>
+            </div>
+            
+            <button type="submit">إرسال الرسالة</button>
+            
+            <p class="note">
+                جميع الحقول مطلوبة *
+            </p>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('contactForm');
+        const nameInput = document.getElementById('name');
+        const phoneInput = document.getElementById('phone');
+        const emailInput = document.getElementById('email');
+        const messageInput = document.getElementById('message');
+        
+        // التحقق عند الإرسال
+        form.addEventListener('submit', function(e) {
+            let isValid = true;
+            
+            // مسح الأخطاء السابقة
+            document.querySelectorAll('.error').forEach(el => el.style.display = 'none');
+            
+            // التحقق من الاسم
+            if (nameInput.value.trim().length < 2) {
+                document.getElementById('nameError').style.display = 'block';
+                isValid = false;
+            }
+            
+            // التحقق من الهاتف
+            const phoneRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+            if (!phoneRegex.test(phoneInput.value.replace(/\s/g, ''))) {
+                document.getElementById('phoneError').style.display = 'block';
+                isValid = false;
+            }
+            
+            // التحقق من البريد
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(emailInput.value)) {
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            }
+            
+            // التحقق من الرسالة
+            if (messageInput.value.trim().length < 10) {
+                document.getElementById('messageError').style.display = 'block';
+                isValid = false;
+            }
+            
+            if (!isValid) {
+                e.preventDefault();
+                return false;
+            }
+            
+            // إذا كل شي صح، السماح بالإرسال
+            return true;
+        });
+        
+        // التحقق الفوري
+        nameInput.addEventListener('blur', function() {
+            if (this.value.trim().length >= 2) {
+                document.getElementById('nameError').style.display = 'none';
+            }
+        });
+        
+        phoneInput.addEventListener('blur', function() {
+            const phoneRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+            if (phoneRegex.test(this.value.replace(/\s/g, ''))) {
+                document.getElementById('phoneError').style.display = 'none';
+            }
+        });
+        
+        emailInput.addEventListener('blur', function() {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (emailRegex.test(this.value)) {
+                document.getElementById('emailError').style.display = 'none';
+            }
+        });
+        
+        messageInput.addEventListener('blur', function() {
+            if (this.value.trim().length >= 10) {
+                document.getElementById('messageError').style.display = 'none';
+            }
+        });
+        
+        // عرض رسالة النجاح إذا كان في URL
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('success') === '1') {
+            document.getElementById('successMsg').style.display = 'block';
+            form.reset();
+        }
+    </script>
+</body>
+</html>
