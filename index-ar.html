@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Tech | نوفا تك</title>
+
+    <!-- MAIN STYLE -->
+    <link rel="stylesheet" href="./css/style.css">
+
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&family=Tajawal:wght@200;300;400;500;700;800;900&family=Amiri:wght@400;700&family=Almarai:wght@300;400;700;800&display=swap" rel="stylesheet">
+
+    <!-- ICONS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="./images/image.png">
+
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+
+    <!-- IONICONS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <style>
+        * {
+            font-feature-settings: "calt" 1, "liga" 1, "clig" 1;
+            -webkit-font-feature-settings: "calt" 1, "liga" 1, "clig" 1;
+            -moz-font-feature-settings: "calt" 1, "liga" 1, "clig" 1;
+        }
+
+        body {
+            font-family: 'Cairo', 'Almarai', 'Tajawal', 'Amiri', sans-serif !important;
+            direction: rtl;
+            text-align: right;
+            unicode-bidi: embed;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Force Arabic fonts everywhere */
+        * {
+            font-family: 'Cairo', 'Almarai', 'Tajawal', sans-serif !important;
+        }
+        
+        /* إصلاح الحدود الزخرفية في RTL - إخفائها تماماً */
+        .heading::before,
+        .heading::after,
+        .section-head h1::before,
+        .section-head h1::after,
+        .section-head-1 h4::before,
+        .section-head-1 h4::after {
+            display: none !important;
+        }
+        
+        /* تأكد من توسيط العناوين */
+        .section-head-1 {
+            text-align: center;
+            width: 100%;
+        }
+        
+        .section-head-1 h4 {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Fix Arabic/Kurdish text rendering */
+        h1, h2, h3, h4, h5, h6, p, span, a, li, button, input, textarea {
+            unicode-bidi: embed;
+            font-feature-settings: "calt" 1, "liga" 1, "clig" 1, "kern" 1;
+            text-rendering: optimizeLegibility;
+            letter-spacing: 0;
+            word-spacing: 0;
+        }
+        
+        /* Language Switcher - Inside Header */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .language-switcher {
+            display: flex;
+            flex-direction: row;
+            gap: 0.8rem;
+            align-items: center;
+        }
+        
+        .lang-btn {
+            border: 1px solid rgba(127, 63, 237, 0.3);
+            background: rgba(15, 21, 36, 0.6);
+            color: #c3c7d9;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.4rem;
+            backdrop-filter: blur(10px);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .lang-btn:hover {
+            transform: translateY(-2px);
+            border-color: rgba(127, 63, 237, 0.6);
+            color: #fff;
+            box-shadow: 0 5px 15px rgba(127, 63, 237, 0.4);
+        }
+        
+        .lang-btn.active {
+            background: linear-gradient(135deg, #7f3fed, #ba42ff);
+            border-color: transparent;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(127, 63, 237, 0.6);
+        }
+        
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .language-switcher {
+                position: absolute;
+                top: 7rem;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 999;
+            }
+            
+            .header .navbar.active ~ .language-switcher {
+                top: auto;
+                bottom: 2rem;
+            }
+        }
+
+        /* RTL Specific Fixes */
+        .header .navbar ul {
+            direction: rtl;
+        }
+        
+        .hero-content {
+            text-align: center;
+        }
+        
+        .hero-title,
+        .hero-title-line {
+            unicode-bidi: embed;
+            font-feature-settings: "calt" 1, "liga" 1;
+        }
+        
+        .about .content,
+        .about .content p {
+            text-align: right;
+            direction: rtl;
+            unicode-bidi: embed;
+        }
+        
+        .services-grid {
+            direction: rtl;
+        }
+        
+        .service-item {
+            text-align: center;
+        }
+        
+        .service-item h6 {
+            unicode-bidi: embed;
+        }
+        
+        .team .row {
+            direction: rtl;
+        }
+        
+        .footer-container {
+            direction: rtl;
+        }
+        
+        .footer-col ul {
+            text-align: right;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            text-align: right;
+            direction: rtl;
+            unicode-bidi: embed;
+        }
+        
+        /* Ensure heading text connects properly */
+        .heading {
+            unicode-bidi: embed;
+            font-feature-settings: "calt" 1, "liga" 1, "clig" 1;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- STARFIELD CANVAS -->
+<canvas id="starfield"></canvas>
+<div id="graffiti-cursor"></div>
+
+<!-- PAGE PRELOADER -->
+<div id="preloader">
+    <div class="spinner">
+        <div class="spinner1"></div>
+    </div>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+    <a href="#" class="logo">
+        <img src="./images/WhatsApp Image 2025-12-06 at 13.44.13_038c8a14.jpg" alt="Nova Tech">
+    </a>
+
+    <div class="fas fa-bars"></div>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="#home">الرئيسية</a></li>
+            <li><a href="#about">من نحن</a></li>
+            <li><a href="#portfolio">الخدمات</a></li>
+            <li><a href="#team">الفريق</a></li>
+            <li><a href="careers.html">الوظائف</a></li>
+            <li><a href="#contact">تواصل معنا</a></li>
+        </ul>
+    </nav>
+    
+    <div class="language-switcher">
+        <a href="index.html" class="lang-btn">EN</a>
+        <a href="index-ar.html" class="lang-btn active">AR</a>
+        <a href="index-ku.html" class="lang-btn">KU</a>
+    </div>
+</header>
+
+<!-- HERO SECTION -->
+<section id="home" class="hero-section">
+    <div class="hero-bg-effects">
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-orb hero-orb-3"></div>
+    </div>
+
+    <div class="hero-particles">
+        <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
+        <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
+    </div>
+
+    <div class="hero-content">
+        <div class="hero-logo-wrapper">
+            <img src="./images/Futuristic Nova Tech Design.png" alt="Nova Tech Logo" class="hero-logo" />
+            <div class="logo-glow"></div>
+        </div>
+
+        <h1 class="hero-title">
+            <span class="hero-title-line">نبني المستقبل</span>
+            <span class="hero-title-line hero-title-gradient">بالبرمجة والذكاء</span>
+        </h1>
+
+        <div class="hero-subtitle-wrapper">
+            <p class="hero-subtitle">
+                <span class="typed-text"></span>
+                <span class="cursor">|</span>
+            </p>
+        </div>
+
+        <div class="hero-tags">
+            <span class="hero-tag">تطوير البرمجيات</span>
+            <span class="hero-tag">حلول الذكاء الاصطناعي</span>
+            <span class="hero-tag">أنظمة الأعمال</span>
+        </div>
+
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <span class="stat-number" data-target="20">0</span>
+                <span class="stat-label">المشاريع</span>
+            </div>
+            <div class="hero-stat">
+                <span class="stat-number" data-target="8">0</span>
+                <span class="stat-label">العملاء</span>
+            </div>
+            <div class="hero-stat">
+                <span class="stat-number" data-target="3">0</span>
+                <span class="stat-label">سنوات</span>
+            </div>
+        </div>
+    </div>
+
+    <canvas id="novaRing"></canvas>
+</section>
+
+<!-- ABOUT SECTION -->
+<section id="about" class="about">
+    <div class="about-bg-effects">
+        <div class="about-orb about-orb-1"></div>
+        <div class="about-orb about-orb-2"></div>
+    </div>
+
+    <div class="about-grid"></div>
+
+    <h1 class="heading">عن نوفا تك</h1>
+
+    <div class="row">
+        <div class="content">
+            <h3>حلول تقنية احترافية من دهوك</h3>
+            <p>
+                نوفا تك فريق تقني في دهوك يقدم حلول برمجية حديثة للطلاب والشركات الناشئة والأعمال. 
+                نتخصص في تطوير البرمجيات، وأنظمة نقاط البيع، والحلول البيومترية والحضور، وهندسة قواعد البيانات، 
+                والذكاء الاصطناعي وتعلم الآلة، وتصميم واجهات وتجربة مستخدم احترافية. 
+                نركز على بناء أنظمة آمنة وقابلة للتوسع وعملية تساعد عملاءنا على النمو بثقة.
+            </p>
+        </div>
+    </div>
+
+    <div class="about-features">
+        <div class="feature-card">
+            <div class="feature-icon">💡</div>
+            <h4>ابتكار أولاً</h4>
+            <p>حلول متقدمة بأحدث التقنيات</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🎯</div>
+            <h4>تركيز على العميل</h4>
+            <p>حلول مخصصة حسب احتياجات عملك</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🚀</div>
+            <h4>نمو مستدام</h4>
+            <p>أنظمة قابلة للتوسع مع نمو عملك</p>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES SECTION -->
+<div class="services-section">
+    <div class="services-bg-effects">
+        <div class="services-orb services-orb-1"></div>
+        <div class="services-orb services-orb-2"></div>
+        <div class="services-orb services-orb-3"></div>
+    </div>
+
+    <div class="container">
+        <div class="section-head-1">
+            <h4 id="portfolio">
+                <span>نوفا تك</span> <span>الخدمات</span>
+            </h4>
+            <p>حلول ذكية للطلاب والشركات الناشئة والمؤسسات.</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-item">
+                <span class="icon feature_box_col_four"><i class="fa fa-cash-register"></i></span>
+                <h6>نقاط البيع وأنظمة الأعمال</h6>
+                <p>أنظمة POS كاملة مع مخزون وتقارير وفواتير وتوثيق آمن.</p>
+            </div>
+
+            <div class="service-item">
+                <span class="icon feature_box_col_five"><i class="fa fa-fingerprint"></i></span>
+                <h6>الحضور والأنظمة البيومترية</h6>
+                <p>حضور بالبصمة وتحكم بالدخول وأنظمة دفع للمؤسسات.</p>
+            </div>
+
+            <div class="service-item">
+                <span class="icon feature_box_col_six"><i class="fa fa-robot"></i></span>
+                <h6>الذكاء الاصطناعي وتعلم الآلة</h6>
+                <p>نماذج ذكاء للصور والإيماءات والأتمتة والتحليلات.</p>
+            </div>
+
+            <div class="service-item">
+                <span class="icon feature_box_col_one"><i class="fa fa-laptop-code"></i></span>
+                <h6>مشاريع التخرج للطلاب</h6>
+                <p>دعم كامل لمشاريع التخرج من الفكرة حتى التسليم.</p>
+            </div>
+
+            <div class="service-item">
+                <span class="icon feature_box_col_two"><i class="fa fa-globe"></i></span>
+                <h6>تطوير الويب والأنظمة</h6>
+                <p>مواقع ولوحات تحكم وأنظمة داخلية بأداء عالي.</p>
+            </div>
+
+            <div class="service-item">
+                <span class="icon feature_box_col_three"><i class="fa fa-database"></i></span>
+                <h6>تصميم وربط قواعد البيانات</h6>
+                <p>بنية آمنة وتحسين وربط قواعد البيانات للأنظمة.</p>
+            </div>
+
+            <div class="service-item">
+                <span class="icon feature_box_col_four"><i class="fa fa-palette"></i></span>
+                <h6>تصميم جرافيك و UI/UX</h6>
+                <p>هوية بصرية، واجهات، بوسترات، وتصاميم سوشيال.</p>
+            </div>
+
+            <div class="service-item">
+                <span class="icon feature_box_col_five"><i class="fa fa-cloud"></i></span>
+                <h6>تطوير الباك اند و APIs</h6>
+                <p>واجهات API آمنة وأنظمة خلفية جاهزة للسحابة.</p>
+            </div>
+
+            <div class="service-item">
+                <span class="icon feature_box_col_six"><i class="fa fa-chalkboard-teacher"></i></span>
+                <h6>تدريب وإشراف تقني</h6>
+                <p>إرشاد احترافي للطلاب والفرق في البرمجة والذكاء.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CTA SECTION -->
+<div class="communicate">
+    <div class="cta-bg-effects">
+        <div class="cta-orb cta-orb-1"></div>
+        <div class="cta-orb cta-orb-2"></div>
+        <div class="cta-orb cta-orb-3"></div>
+    </div>
+
+    <div class="cta-particles">
+        <div class="cta-particle"></div><div class="cta-particle"></div><div class="cta-particle"></div>
+        <div class="cta-particle"></div><div class="cta-particle"></div><div class="cta-particle"></div>
+    </div>
+
+    <div class="cta-decoration">
+        <div class="cta-circle cta-circle-1"></div>
+        <div class="cta-circle cta-circle-2"></div>
+    </div>
+
+    <div class="cta-content">
+        <h3>جاهز لبدء مشروعك القادم؟</h3>
+        <p>
+            سواء كنت طالباً أو صاحب عمل، نوفا تك في دهوك جاهزة لتحويل أفكارك إلى حلول رقمية قوية وموثوقة.
+        </p>
+        <a href="#contact"><button class="btn">تواصل مع نوفا تك</button></a>
+    </div>
+</div>
+
+<!-- TEAM SECTION -->
+<section class="team" id="team">
+    <div class="team-bg-effects">
+        <div class="team-orb team-orb-1"></div>
+        <div class="team-orb team-orb-2"></div>
+    </div>
+
+    <h1 class="heading">فريقنا</h1>
+
+    <div class="row">
+        <div class="card">
+            <div class="image">
+                <img src="./images/blind bjar.jpg" alt="Bilind Bjar">
+            </div>
+            <div class="info">
+                <h3>Bilind Bjar</h3>
+                <span>مطور ويب</span>
+                <div class="icons">
+                    <a href="/cdn-cgi/l/email-protection#3e5c52505a5c545f4c0e097e59535f5752105d5153"><i class="fas fa-envelope"></i></a>
+                    <a href="https://wa.me/9647507308005"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/blndbjar1?igsh=MXdhbzBuY2o4MXo0Mw=="><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="accent-line"></div>
+        </div>
+
+        <div class="card">
+            <div class="image">
+                <img src="./images/team-member-1.jpg" alt="Metin Meki">
+            </div>
+            <div class="info">
+                <h3>Metin Meki</h3>
+                <span>مطور ذكاء وويب</span>
+                <div class="icons">
+                    <a href="https://wa.me/9647502365028"><i class="fab fa-whatsapp"></i></a>
+                    <a href="/cdn-cgi/l/email-protection#bdf0d8c9d4d3d0d8d6d48484fddad0dcd4d193ded2d0"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.instagram.com/metin_amedi?igsh=N3lncThuaGN4MjB3&utm_source=qr"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/matin-maki-2b6b74326/"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="accent-line"></div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contact" class="contact">
+    <div class="contact-bg-effects">
+        <div class="contact-orb contact-orb-1"></div>
+        <div class="contact-orb contact-orb-2"></div>
+    </div>
+
+    <h1 class="heading">تواصل معنا</h1>
+</section>
+
+<div class="contact-in">
+    <div class="contact-map">
+        <iframe
+            src="https://www.google.com/maps?q=36.8594906,43.0002792&z=15&output=embed"
+            width="100%"
+            height="450"
+            style="border:0;"
+            allowfullscreen
+            loading="lazy">
+        </iframe>
+    </div>
+
+    <div class="contact-form">
+        <form action="./contactme.php" method="POST">
+            <input type="text" name="name" class="contact-form-txt" required placeholder="الاسم">
+            <input type="tel" name="phone" class="contact-form-phone" required placeholder="رقم الهاتف">
+            <input type="email" name="email" class="contact-form-email" required placeholder="البريد الإلكتروني">
+            <textarea name="message" class="contact-form-txtarea" required placeholder="اكتب رسالتك"></textarea>
+            <input type="submit" value="إرسال" name="submit" class="contact-form-btn">
+        </form>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-bg-effects">
+        <div class="footer-orb footer-orb-1"></div>
+        <div class="footer-orb footer-orb-2"></div>
+    </div>
+
+    <div class="footer-container">
+        <div class="footer-col brand">
+            <img src="./images/Futuristic Nova Tech Design.png" alt="Nova Tech">
+            <p>
+                نوفا تك شركة تقنية في دهوك تقدم برمجيات احترافية وحلول ذكاء اصطناعي وأنظمة أعمال قابلة للتوسع وآمنة.
+            </p>
+        </div>
+
+        <div class="footer-col">
+            <h4>روابط سريعة</h4>
+            <ul>
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#about">من نحن</a></li>
+                <li><a href="#portfolio">الخدمات</a></li>
+                <li><a href="#team">الفريق</a></li>
+                <li><a href="#contact">تواصل معنا</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>الخدمات</h4>
+            <ul>
+                <li>نقاط البيع وأنظمة الأعمال</li>
+                <li>الذكاء الاصطناعي وتعلم الآلة</li>
+                <li>الحضور والأنظمة البيومترية</li>
+                <li>تطوير الباك اند و APIs</li>
+                <li>مشاريع التخرج للطلاب</li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>التواصل</h4>
+            <ul class="footer-contact">
+                <li><i class="fas fa-map-marker-alt"></i> <span>دهوك، كردستان</span></li>
+                <li><i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2947465f485d4c4a41694e44484045074a4644">[email&#160;protected]</a></li>
+                <li><i class="fas fa-phone"></i> +964 750 000 0000</li>
+            </ul>
+
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2025 نوفا تك. جميع الحقوق محفوظة.</p>
+    </div>
+</footer>
+
+<!-- BACK TO TOP -->
+<a href="#" class="back-to-top"><i class="ion-ios-arrow-up"></i></a>
+
+<!-- SCRIPTS -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/stars.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="js/novaRing.js"></script>
+
+<!-- PRELOADER -->
+<script>
+    window.addEventListener("load", () => {
+        const loader = document.getElementById("preloader");
+        if (!loader) return;
+
+        setTimeout(() => {
+            loader.classList.add("hidden");
+            setTimeout(() => loader.remove(), 1000);
+        }, 1200);
+    });
+</script>
+
+<!-- GRAFFITI CURSOR -->
+<script>
+    const cursor = document.getElementById("graffiti-cursor");
+    let mouseX = 0, mouseY = 0, posX = 0, posY = 0;
+
+    document.addEventListener("mousemove", (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+        const dot = document.createElement("div");
+        dot.className = "graffiti-dot";
+        dot.style.left = mouseX + "px";
+        dot.style.top = mouseY + "px";
+        dot.style.background = `radial-gradient(circle, hsl(${Math.random() * 360}, 100%, 70%), transparent)`;
+        document.body.appendChild(dot);
+        setTimeout(() => dot.remove(), 800);
+    });
+
+    function animate() {
+        posX += (mouseX - posX) * 0.7;
+        posY += (mouseY - posY) * 0.7;
+        cursor.style.left = posX + "px";
+        cursor.style.top = posY + "px";
+        requestAnimationFrame(animate);
+    }
+    animate();
+</script>
+
+<!-- HERO TYPING + COUNTERS -->
+<script>
+    const typedTextSpan = document.querySelector(".typed-text");
+    const cursorSpan = document.querySelector(".cursor");
+
+    // النصوص العربية للكتابة المتحركة
+    let textArray = [
+        "نحن في دهوك — ونخدم العالم",
+        "تطوير برمجيات • حلول ذكاء اصطناعي",
+        "حوّل فكرتك إلى واقع"
+    ];
+
+    const typingDelay = 90;
+    const erasingDelay = 45;
+    const newTextDelay = 1600;
+    let textArrayIndex = 0;
+    let charIndex = 0;
+
+    function type() {
+        if (!typedTextSpan) return;
+        if (charIndex < textArray[textArrayIndex].length) {
+            cursorSpan && cursorSpan.classList.add("typing");
+            typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+            charIndex++;
+            setTimeout(type, typingDelay);
+        } else {
+            cursorSpan && cursorSpan.classList.remove("typing");
+            setTimeout(erase, newTextDelay);
+        }
+    }
+
+    function erase() {
+        if (!typedTextSpan) return;
+        if (charIndex > 0) {
+            cursorSpan && cursorSpan.classList.add("typing");
+            typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex - 1);
+            charIndex--;
+            setTimeout(erase, erasingDelay);
+        } else {
+            cursorSpan && cursorSpan.classList.remove("typing");
+            textArrayIndex = (textArrayIndex + 1) % textArray.length;
+            setTimeout(type, 400);
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(type, 600);
+    });
+
+    // Counter animation
+    function animateCounter() {
+        const counters = document.querySelectorAll(".stat-number");
+        const speed = 200;
+
+        counters.forEach(counter => {
+            const target = +counter.getAttribute("data-target");
+            const increment = target / speed;
+
+            const updateCount = () => {
+                const count = +counter.innerText;
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(updateCount, 10);
+                } else {
+                    counter.innerText = target + "+";
+                }
+            };
+
+            updateCount();
+        });
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter();
+                observer.unobserve(entry.target);
+            }
+        });
+    });
+
+    const heroSection = document.querySelector(".hero-section");
+    if (heroSection) observer.observe(heroSection);
+</script>
+
+<!-- Smooth anchor scroll -->
+<script>
+    function getHeaderOffset() {
+      const header = document.querySelector(".header");
+      return header ? header.offsetHeight + 10 : 80;
+    }
+
+    document.addEventListener("click", (e) => {
+      const a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+
+      const id = a.getAttribute("href");
+      if (!id || id === "#") return;
+
+      const el = document.querySelector(id);
+      if (!el) return;
+
+      e.preventDefault();
+      const top = el.getBoundingClientRect().top + window.pageYOffset - getHeaderOffset();
+      window.scrollTo({ top, behavior: "smooth" });
+    });
+</script>

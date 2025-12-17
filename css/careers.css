@@ -1,0 +1,474 @@
+/* ============================================
+   ENHANCED CAREER PAGE CSS ADDITIONS
+   Add these to your existing careers.css
+   ============================================ */
+
+/* ============================================
+   ENHANCED CUSTOM CURSOR
+   ============================================ */
+
+.nt-cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--nt-accent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    mix-blend-mode: difference;
+}
+
+.nt-cursor.hover {
+    transform: scale(1.5);
+    background: rgba(127, 63, 237, 0.2);
+}
+
+.nt-cursor.click {
+    transform: scale(0.8);
+}
+
+/* ============================================
+   ENHANCED FORM FIELD STATES
+   ============================================ */
+
+.career-card input.valid,
+.career-card textarea.valid {
+    border-color: #00ff00;
+}
+
+.career-card input.error,
+.career-card textarea.error {
+    border-color: #ff4444;
+    animation: shake 0.3s ease;
+}
+
+.field-error {
+    display: block;
+    color: #ff4444;
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+    animation: slideDown 0.2s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* ============================================
+   ENHANCED FILE UPLOAD
+   ============================================ */
+
+.file-label {
+    position: relative;
+}
+
+.file-label.drag-over {
+    border-color: var(--nt-accent);
+    background: rgba(127, 63, 237, 0.1);
+    transform: scale(1.02);
+}
+
+.file-label.file-selected {
+    border-color: #00ff00;
+    background: rgba(0, 255, 0, 0.05);
+}
+
+.file-error {
+    display: none;
+    color: #ff4444;
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+}
+
+.has-file {
+    color: var(--nt-accent) !important;
+    font-weight: 600 !important;
+}
+
+/* ============================================
+   ENHANCED RADIO BUTTONS
+   ============================================ */
+
+.career-radio label {
+    position: relative;
+    padding-left: 3rem;
+    transition: all 0.3s ease;
+}
+
+.career-radio input[type="radio"] {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+}
+
+.career-radio input[type="radio"]:checked + span {
+    color: var(--nt-accent);
+    font-weight: 600;
+}
+
+.career-radio label:has(input:checked) {
+    background: rgba(127, 63, 237, 0.1);
+    border-radius: 8px;
+    padding: 0.8rem 0.8rem 0.8rem 3rem;
+}
+
+/* ============================================
+   ENHANCED HERO SECTION
+   ============================================ */
+
+.hero-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(127, 63, 237, 0.15), transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(0, 225, 255, 0.1), transparent 50%);
+    animation: gradientShift 10s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.8; }
+}
+
+.hero-title {
+    position: relative;
+    display: inline-block;
+}
+
+.hero-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--nt-accent), transparent);
+    animation: lineGlow 2s ease-in-out infinite;
+}
+
+@keyframes lineGlow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+/* ============================================
+   ENHANCED CAREER CARD
+   ============================================ */
+
+.career-card {
+    position: relative;
+}
+
+.career-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    padding: 2px;
+    background: linear-gradient(135deg, transparent, var(--nt-accent), transparent);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.career-card:hover::before {
+    opacity: 0.5;
+}
+
+/* ============================================
+   ENHANCED BUTTONS
+   ============================================ */
+
+.career-card button[type="submit"],
+.btn-primary {
+    position: relative;
+    overflow: hidden;
+}
+
+.career-card button[type="submit"]::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.career-card button[type="submit"]:hover::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* Ripple Effect */
+.career-card button[type="submit"] {
+    background: var(--nt-accent);
+}
+
+.career-card button[type="submit"]:active::after {
+    width: 0;
+    height: 0;
+    transition: 0s;
+}
+
+/* ============================================
+   ENHANCED CLOSED STATE
+   ============================================ */
+
+.career-closed {
+    position: relative;
+    padding: 4rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(127, 63, 237, 0.2);
+    border-radius: 20px;
+}
+
+.career-closed::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--nt-accent), transparent, var(--nt-accent));
+    border-radius: 20px;
+    z-index: -1;
+    opacity: 0.3;
+    animation: borderGlow 3s ease-in-out infinite;
+}
+
+@keyframes borderGlow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+/* ============================================
+   ENHANCED SOCIAL LINKS
+   ============================================ */
+
+.social-links a,
+.social-cta .btn-secondary {
+    position: relative;
+    overflow: hidden;
+}
+
+.social-links a::before,
+.social-cta .btn-secondary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.social-links a:hover::before,
+.social-cta .btn-secondary:hover::before {
+    left: 100%;
+}
+
+/* ============================================
+   FORM PROGRESS INDICATOR
+   ============================================ */
+
+.form-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: var(--nt-accent);
+    transition: width 0.3s ease;
+    z-index: 9998;
+    box-shadow: 0 0 10px var(--nt-accent);
+}
+
+/* ============================================
+   ENHANCED LOADING STATE
+   ============================================ */
+
+.career-card button[type="submit"]:disabled {
+    background: rgba(127, 63, 237, 0.5);
+    cursor: not-allowed;
+}
+
+.career-card button[type="submit"]:disabled::before {
+    animation: none;
+}
+
+/* ============================================
+   ENHANCED ANIMATIONS
+   ============================================ */
+
+.animate-in {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   BACK TO TOP BUTTON
+   ============================================ */
+
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--nt-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.8rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+    box-shadow: 0 5px 20px rgba(127, 63, 237, 0.4);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(127, 63, 237, 0.6);
+}
+
+/* ============================================
+   ENHANCED MOBILE MENU
+   ============================================ */
+
+body.menu-open {
+    overflow: hidden;
+}
+
+.navbar.active {
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================
+   TOOLTIP
+   ============================================ */
+
+[data-tooltip] {
+    position: relative;
+}
+
+[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    padding: 0.5rem 1rem;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    font-size: 1.2rem;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+[data-tooltip]:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-5px);
+}
+
+/* ============================================
+   ENHANCED RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .hero-title::after {
+        bottom: -5px;
+        height: 2px;
+    }
+
+    .career-closed {
+        padding: 2.5rem 1.5rem;
+    }
+
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 1.6rem;
+    }
+}
+
+/* ============================================
+   PERFORMANCE OPTIMIZATIONS
+   ============================================ */
+
+/* Use GPU acceleration for animations */
+.career-card,
+.career-card button,
+.file-label,
+.social-links a,
+.back-to-top {
+    will-change: transform;
+}
+
+/* Reduce animations on slower devices */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ============================================
+   DARK MODE ENHANCEMENTS
+   ============================================ */
+
+@media (prefers-color-scheme: dark) {
+    .career-card {
+        background: rgba(15, 21, 36, 0.95);
+    }
+
+    .career-card input,
+    .career-card textarea {
+        background: rgba(0, 0, 0, 0.3);
+    }
+}
