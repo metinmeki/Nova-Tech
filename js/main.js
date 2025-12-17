@@ -129,3 +129,102 @@ document.addEventListener("mousemove", (e) => {
 
     logo.style.transform = `translate(${x}px, ${y}px)`;
 });
+/* =======================================================
+   8. 3D SCROLL ANIMATION FOR ABOUT SECTION
+   ======================================================= */
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('3D Animation Script Started');
+
+    const aboutSection = document.querySelector('.about');
+    const aboutHeading = document.querySelector('.about .heading');
+    const content = document.querySelector('.about .row .content');
+    const featureCards = document.querySelectorAll('.feature-card');
+
+    console.log('About Heading:', aboutHeading);
+    console.log('Feature Cards:', featureCards.length);
+
+    function checkScroll() {
+        const triggerBottom = window.innerHeight * 0.75;
+
+        // Check heading
+        if (aboutHeading) {
+            const rect = aboutHeading.getBoundingClientRect();
+            if (rect.top < triggerBottom) {
+                aboutHeading.classList.add('visible');
+                console.log('Heading visible added');
+            }
+        }
+
+        // Check content
+        if (content) {
+            const rect = content.getBoundingClientRect();
+            if (rect.top < triggerBottom) {
+                content.classList.add('visible');
+                console.log('Content visible added');
+            }
+        }
+
+        // Check cards
+        featureCards.forEach((card, index) => {
+            const rect = card.getBoundingClientRect();
+            if (rect.top < triggerBottom) {
+                card.classList.add('visible');
+                console.log('Card ' + index + ' visible added');
+            }
+        });
+    }
+
+    function parallaxEffect() {
+        if (!aboutSection) return;
+
+        const rect = aboutSection.getBoundingClientRect();
+        const scrollProgress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+
+        if (scrollProgress >= 0 && scrollProgress <= 1) {
+            const x = (scrollProgress - 0.5) * 100;
+            const y = (scrollProgress - 0.5) * 100;
+
+            aboutSection.style.setProperty('--scroll-x', x + 'px');
+            aboutSection.style.setProperty('--scroll-y', y + 'px');
+            aboutSection.classList.add('scrolled');
+        }
+    }
+
+    // Listen to scroll
+    let ticking = false;
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                checkScroll();
+                parallaxEffect();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+
+    // Mouse effect
+    featureCards.forEach(function(card) {
+        card.addEventListener('mousemove', function(e) {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = (y - centerY) / 10;
+            const rotateY = (centerX - x) / 10;
+            
+            card.style.transform = 'translateZ(30px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) scale(1.05)';
+        });
+
+        card.addEventListener('mouseleave', function() {
+            card.style.transform = '';
+        });
+    });
+
+    // Initial check
+    console.log('Running initial check...');
+    setTimeout(function() {
+        checkScroll();
+    }, 500);
+});

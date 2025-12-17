@@ -1054,6 +1054,8 @@ BUTTONS
 /* ===============================
 ABOUT SECTION
 =============================== */
+/* 3D Scroll Animation Styles - Add to your existing CSS */
+
 .about {
     min-height: 55vh;
     width: 100vw;
@@ -1063,6 +1065,77 @@ ABOUT SECTION
     overflow: hidden;
     line-height: 10rem;
     background: radial-gradient(circle at top, #121a34 0%, #050814 70%);
+    perspective: 1000px; /* مهم للتأثير ثلاثي الأبعاد */
+    padding: 4rem 2rem;
+}
+
+/* Background Effects */
+.about-bg-effects {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.about-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.3;
+    transition: all 0.6s ease;
+}
+
+.about-orb-1 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, #4f46e5, transparent);
+    top: -200px;
+    left: -200px;
+}
+
+.about-orb-2 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, #7c3aed, transparent);
+    bottom: -250px;
+    right: -250px;
+}
+
+/* Parallax effect for orbs */
+.about.scrolled .about-orb-1 {
+    transform: translate(var(--scroll-x), var(--scroll-y));
+}
+
+.about.scrolled .about-orb-2 {
+    transform: translate(calc(var(--scroll-x) * -1), calc(var(--scroll-y) * -1));
+}
+
+.about-grid {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-image: 
+        linear-gradient(rgba(79, 70, 229, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(79, 70, 229, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: 0.2;
+}
+
+/* Heading Animation */
+.heading {
+    opacity: 0;
+    transform: translateZ(-100px) rotateX(20deg);
+    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.heading.visible {
+    opacity: 1;
+    transform: translateZ(0) rotateX(0deg);
 }
 
 .about .row {
@@ -1071,22 +1144,111 @@ ABOUT SECTION
     align-items: center;
     justify-content: space-around;
     padding: 0 4rem;
+    transform-style: preserve-3d;
 }
 
 .about .row .content {
     text-align: center;
     max-width: 800px;
+    opacity: 0;
+    transform: translateZ(-80px) translateY(50px);
+    transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+}
+
+.about .row .content.visible {
+    opacity: 1;
+    transform: translateZ(0) translateY(0);
 }
 
 .about .row .content h3 {
     font-size: 3rem;
     color: var(--nt-text-main);
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, #ffffff, #4f46e5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .about .row .content p {
     font-size: 1.8rem;
     color: var(--nt-text-muted);
     padding: 1rem 0;
+    line-height: 1.8;
+}
+
+/* Feature Cards */
+.about-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 4rem auto 0;
+    padding: 0 2rem;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(79, 70, 229, 0.2);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity: 0;
+    transform: translateZ(-100px) rotateY(-15deg);
+    transform-style: preserve-3d;
+    backdrop-filter: blur(10px);
+}
+
+.feature-card.visible {
+    opacity: 1;
+    transform: translateZ(0) rotateY(0deg);
+}
+
+.feature-card:nth-child(1) { transition-delay: 0.1s; }
+.feature-card:nth-child(2) { transition-delay: 0.2s; }
+.feature-card:nth-child(3) { transition-delay: 0.3s; }
+
+.feature-card:hover {
+    transform: translateZ(30px) scale(1.05);
+    border-color: rgba(79, 70, 229, 0.5);
+    box-shadow: 
+        0 20px 60px rgba(79, 70, 229, 0.3),
+        0 0 40px rgba(79, 70, 229, 0.2);
+}
+
+.feature-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    transform: translateZ(20px);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover .feature-icon {
+    transform: translateZ(40px) scale(1.2) rotateY(10deg);
+}
+
+.feature-card h4 {
+    font-size: 2rem;
+    color: var(--nt-text-main);
+    margin-bottom: 1rem;
+}
+
+.feature-card p {
+    font-size: 1.4rem;
+    color: var(--nt-text-muted);
+    line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .about .row {
+        padding: 0 2rem;
+    }
+    
+    .about-features {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
 }
 
 /* ===============================
@@ -2810,72 +2972,196 @@ RESPONSIVE DESIGN
    ENHANCED ABOUT SECTION
 ======================================== */
 
-.about {
-    position: relative;
-    padding: 6rem 2rem;
-    background: linear-gradient(180deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
-    overflow: hidden;
+/* ====================================
+   3D SCROLL ANIMATION STYLES
+   ==================================== */
 
-    /* OPTIONAL: uncomment if you want full section vertical balance */
-    /* min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; */
+/* About Section - Add perspective for 3D */
+.about {
+    perspective: 1000px;
+    transform-style: preserve-3d;
 }
 
-/* ================= BACKGROUND EFFECTS ================= */
-
+/* Background Effects */
 .about-bg-effects {
     position: absolute;
-    inset: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
     overflow: hidden;
-    z-index: 1;
-    opacity: 0.4;
+    z-index: 0;
 }
 
 .about-orb {
     position: absolute;
     border-radius: 50%;
-    filter: blur(100px);
-    animation: floatOrb 10s ease-in-out infinite;
+    filter: blur(80px);
+    opacity: 0.3;
+    transition: all 0.6s ease;
 }
 
 .about-orb-1 {
     width: 400px;
     height: 400px;
-    background: radial-gradient(circle, #6366f1, transparent);
-    top: 10%;
-    right: -200px;
+    background: radial-gradient(circle, #4f46e5, transparent);
+    top: -200px;
+    left: -200px;
 }
 
 .about-orb-2 {
-    width: 350px;
-    height: 350px;
-    background: radial-gradient(circle, #14b8a6, transparent);
-    bottom: 10%;
-    left: -150px;
-    animation-delay: 3s;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, #7c3aed, transparent);
+    bottom: -250px;
+    right: -250px;
 }
 
-@keyframes floatOrb {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(30px, -30px) scale(1.1); }
+/* Parallax effect for orbs */
+.about.scrolled .about-orb-1 {
+    transform: translate(var(--scroll-x), var(--scroll-y));
+}
+
+.about.scrolled .about-orb-2 {
+    transform: translate(calc(var(--scroll-x) * -1), calc(var(--scroll-y) * -1));
 }
 
 .about-grid {
     position: absolute;
-    inset: 0;
-    background-image:
-        linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-image: 
+        linear-gradient(rgba(79, 70, 229, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(79, 70, 229, 0.1) 1px, transparent 1px);
     background-size: 50px 50px;
-    z-index: 1;
-    animation: gridMove 20s linear infinite;
+    opacity: 0.2;
+    z-index: 0;
 }
 
-@keyframes gridMove {
-    from { transform: translateY(0); }
-    to { transform: translateY(50px); }
+/* Heading Animation */
+.about .heading {
+    opacity: 0;
+    transform: translateZ(-100px) rotateX(20deg);
+    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    z-index: 1;
+}
+
+.about .heading.visible {
+    opacity: 1;
+    transform: translateZ(0) rotateX(0deg);
+}
+
+/* Content Row with 3D */
+.about .row {
+    transform-style: preserve-3d;
+    position: relative;
+    z-index: 1;
+}
+
+.about .row .content {
+    opacity: 0;
+    transform: translateZ(-80px) translateY(50px);
+    transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+}
+
+.about .row .content.visible {
+    opacity: 1;
+    transform: translateZ(0) translateY(0);
+}
+
+.about .row .content h3 {
+    background: linear-gradient(135deg, #ffffff, #4f46e5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Feature Cards 3D */
+.about-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 4rem auto 0;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(79, 70, 229, 0.2);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity: 0;
+    transform: translateZ(-100px) rotateY(-15deg);
+    transform-style: preserve-3d;
+    backdrop-filter: blur(10px);
+}
+
+.feature-card.visible {
+    opacity: 1;
+    transform: translateZ(0) rotateY(0deg);
+}
+
+.feature-card:nth-child(1) { 
+    transition-delay: 0.1s; 
+}
+
+.feature-card:nth-child(2) { 
+    transition-delay: 0.2s; 
+}
+
+.feature-card:nth-child(3) { 
+    transition-delay: 0.3s; 
+}
+
+.feature-card:hover {
+    transform: translateZ(30px) scale(1.05);
+    border-color: rgba(79, 70, 229, 0.5);
+    box-shadow: 
+        0 20px 60px rgba(79, 70, 229, 0.3),
+        0 0 40px rgba(79, 70, 229, 0.2);
+}
+
+.feature-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    transform: translateZ(20px);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover .feature-icon {
+    transform: translateZ(40px) scale(1.2) rotateY(10deg);
+}
+
+.feature-card h4 {
+    font-size: 2rem;
+    color: var(--nt-text-main);
+    margin-bottom: 1rem;
+}
+
+.feature-card p {
+    font-size: 1.4rem;
+    color: var(--nt-text-muted);
+    line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .about-features {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .feature-card {
+        padding: 2rem 1.5rem;
+    }
 }
 
 /* ================= HEADING ================= */

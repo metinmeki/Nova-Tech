@@ -1,49 +1,87 @@
-const canvas = document.getElementById("novaRing");
-const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+(function() {
+    'use strict';
+    
+    const novaCanvas = document.getElementById("novaRing");
+    if (!novaCanvas) {
+        console.warn('Nova Ring canvas not found');
+        return;
+    }
 
-renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(window.devicePixelRatio);
+    const renderer = new THREE.WebGLRenderer({ 
+        canvas: novaCanvas, 
+        alpha: true,
+        antialias: true
+    });
 
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(
-    75,
-    window.innerWidth / window.innerHeight,
-    0.1,
-    1000
-);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-camera.position.z = 6;
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(
+        75,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+    );
 
-// Ring
-const geometry = new THREE.TorusGeometry(2, 0.35, 32, 80);
-const material = new THREE.MeshBasicMaterial({ color: 0x7f3fed });
-const ring = new THREE.Mesh(geometry, material);
-scene.add(ring);
+    camera.position.z = 6;
 
-// Glow ring
-const glow = new THREE.Mesh(
-    new THREE.TorusGeometry(2.3, 0.55, 32, 80),
-    new THREE.MeshBasicMaterial({
+    // Ring
+    const geometry = new THREE.TorusGeometry(2, 0.35, 32, 80);
+    const material = new THREE.MeshBasicMaterial({ 
+        color: 0x7f3fed,
+        transparent: true,
+        opacity: 0.8
+    });
+    const ring = new THREE.Mesh(geometry, material);
+    scene.add(ring);
+
+    // Glow ring
+    const glowGeometry = new THREE.TorusGeometry(2.3, 0.55, 32, 80);
+    const glowMaterial = new THREE.MeshBasicMaterial({
         color: 0xb58cff,
         transparent: true,
         opacity: 0.3
-    })
-);
-scene.add(glow);
+    });
+    const glow = new THREE.Mesh(glowGeometry, glowMaterial);
+    scene.add(glow);
 
-// Animate
-function animate() {
-    requestAnimationFrame(animate);
-    ring.rotation.x += 0.003;
-    ring.rotation.y += 0.004;
-    glow.rotation.y += 0.002;
-    renderer.render(scene, camera);
-}
-animate();
+    // Animate
+    let animationId;
+    function animate() {
+        animationId = requestAnimationFrame(animate);
+        
+        ring.rotation.x += 0.003;
+        ring.rotation.y += 0.004;
+        glow.rotation.y += 0.002;
+        
+        renderer.render(scene, camera);
+    }
+    animate();
 
-// Resize
-window.addEventListener("resize", () => {
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-});
+    // Resize handler
+    function handleResize() {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+
+        renderer.setSize(width, height);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', function() {
+        if (animationId) {
+            cancelAnimationFrame(animationId);
+        }
+        geometry.dispose();
+        material.dispose();
+        glowGeometry.dispose();
+        glowMaterial.dispose();
+        renderer.dispose();
+    });
+
+    console.log('✅ Nova Ring initialized');
+})();

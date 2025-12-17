@@ -471,7 +471,7 @@
   <!-- SCRIPTS -->
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/stars.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="js/novaRing.js"></script>
+
   <link rel="stylesheet" href="./css/contact-form-styles.css" />
   <script src="./js/contact-form.js"></script>
   <!-- PRELOADER -->
@@ -621,3 +621,110 @@
       window.scrollTo({ top, behavior: "smooth" });
     });
 </script>
+<script>
+(function() {
+    'use strict';
+    
+    console.log('Starting 3D Animation...');
+    
+    window.addEventListener('load', function() {
+        
+        const aboutSection = document.querySelector('.about');
+        const aboutHeading = document.querySelector('.about .heading');
+        const content = document.querySelector('.about .row .content');
+        const featureCards = document.querySelectorAll('.feature-card');
+
+        console.log('About Section:', aboutSection);
+        console.log('About Heading:', aboutHeading);
+        console.log('Content:', content);
+        console.log('Feature Cards:', featureCards.length);
+
+        if (!aboutSection || !aboutHeading) {
+            console.error('Elements not found!');
+            return;
+        }
+
+        function checkScroll() {
+            const triggerBottom = window.innerHeight * 0.8;
+
+            if (aboutHeading) {
+                const rect = aboutHeading.getBoundingClientRect();
+                if (rect.top < triggerBottom) {
+                    aboutHeading.classList.add('visible');
+                    console.log('✓ Heading visible');
+                }
+            }
+
+            if (content) {
+                const rect = content.getBoundingClientRect();
+                if (rect.top < triggerBottom) {
+                    content.classList.add('visible');
+                    console.log('✓ Content visible');
+                }
+            }
+
+            featureCards.forEach((card, i) => {
+                const rect = card.getBoundingClientRect();
+                if (rect.top < triggerBottom) {
+                    card.classList.add('visible');
+                    console.log('✓ Card ' + i + ' visible');
+                }
+            });
+        }
+
+        function parallaxEffect() {
+            if (!aboutSection) return;
+
+            const rect = aboutSection.getBoundingClientRect();
+            const scrollProgress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+
+            if (scrollProgress >= 0 && scrollProgress <= 1) {
+                const x = (scrollProgress - 0.5) * 100;
+                const y = (scrollProgress - 0.5) * 100;
+
+                aboutSection.style.setProperty('--scroll-x', x + 'px');
+                aboutSection.style.setProperty('--scroll-y', y + 'px');
+                aboutSection.classList.add('scrolled');
+            }
+        }
+
+        let ticking = false;
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                window.requestAnimationFrame(function() {
+                    checkScroll();
+                    parallaxEffect();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        featureCards.forEach(function(card) {
+            card.addEventListener('mousemove', function(e) {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                card.style.transform = 'translateZ(30px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) scale(1.05)';
+            });
+
+            card.addEventListener('mouseleave', function() {
+                card.style.transform = '';
+            });
+        });
+
+        console.log('Running initial check...');
+        setTimeout(function() {
+            checkScroll();
+        }, 100);
+        
+    });
+})();
+</script>
+</body>
+</html>
