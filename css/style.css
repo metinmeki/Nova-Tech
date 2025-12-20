@@ -2248,6 +2248,94 @@ CTA SECTION
         height: 250px;
     }
 }
+/* ================= FAQ SECTION ================= */
+.faq-section {
+  position: relative;
+  padding: 6rem 2rem;
+  background: linear-gradient(180deg, #050814, #0b0f19);
+  overflow: hidden;
+}
+
+.faq-container {
+  max-width: 1100px;
+  margin: auto;
+  position: relative;
+  z-index: 2;
+}
+
+.faq-subtitle {
+  text-align: center;
+  color: var(--nt-text-muted);
+  margin-bottom: 3rem;
+}
+
+.accordion-item {
+  background: rgba(15, 21, 36, 0.7);
+  border: 1px solid var(--nt-border-soft);
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.accordion-header {
+  width: 100%;
+  background: none;
+  border: none;
+  color: #fff;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.accordion-title {
+  flex: 1;
+  text-align: left;
+  margin-left: 1rem;
+}
+
+.accordion-arrow {
+  transition: transform 0.3s ease;
+}
+
+.accordion-item.active .accordion-arrow {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 1.5rem;
+  transition: all 0.35s ease;
+}
+
+.accordion-item.active .accordion-content {
+  max-height: 300px;
+  padding: 1rem 1.5rem 1.5rem;
+  color: var(--nt-text-muted);
+}
+
+/* FAQ CTA */
+.faq-cta {
+  margin-top: 4rem;
+  text-align: center;
+  background: linear-gradient(135deg, #7f3fed, #ba42ff);
+  border-radius: 16px;
+  padding: 3rem;
+}
+
+.faq-cta h3 {
+  color: #fff;
+}
+
+.faq-cta p {
+  color: #eee;
+  margin: 1rem 0;
+}
+
 /* ===============================
 CONTACT SECTION
 =============================== */
