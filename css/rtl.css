@@ -1,0 +1,36 @@
+/* ===============================
+   RTL SUPPORT (Arabic & Kurdish)
+   =============================== */
+
+[dir="rtl"] {
+    direction: rtl;
+}
+
+/* RTL font ONLY */
+[dir="rtl"] body {
+    font-family: 'Cairo', 'Tajawal', sans-serif;
+}
+
+/* Navbar */
+[dir="rtl"] .navbar ul {
+    flex-direction: row-reverse;
+}
+
+/* Hero tags & buttons */
+[dir="rtl"] .hero-tags,
+[dir="rtl"] .hero-actions {
+    flex-direction: row-reverse;
+}
+
+/* Footer */
+[dir="rtl"] .footer-social,
+[dir="rtl"] .footer-contact li {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+/* Contact form */
+[dir="rtl"] .contact-form input,
+[dir="rtl"] .contact-form textarea {
+    text-align: right;
+}
