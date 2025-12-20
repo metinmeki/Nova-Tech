@@ -28,174 +28,64 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <style>
-        * {
-            font-feature-settings: "calt" 1, "liga" 1, "clig" 1;
-            -webkit-font-feature-settings: "calt" 1, "liga" 1, "clig" 1;
-            -moz-font-feature-settings: "calt" 1, "liga" 1, "clig" 1;
-        }
-
-        body {
-            font-family: 'Cairo', 'Almarai', 'Tajawal', 'Amiri', sans-serif !important;
-            direction: rtl;
-            text-align: right;
-            unicode-bidi: embed;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        
-        /* Force Arabic fonts everywhere */
-        * {
-            font-family: 'Cairo', 'Almarai', 'Tajawal', sans-serif !important;
-        }
-        
-        /* إصلاح الحدود الزخرفية في RTL - إخفائها تماماً */
-        .heading::before,
-        .heading::after,
-        .section-head h1::before,
-        .section-head h1::after,
-        .section-head-1 h4::before,
-        .section-head-1 h4::after {
-            display: none !important;
-        }
-        
-        /* تأكد من توسيط العناوين */
-        .section-head-1 {
-            text-align: center;
-            width: 100%;
-        }
-        
-        .section-head-1 h4 {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        /* Fix Arabic/Kurdish text rendering */
-        h1, h2, h3, h4, h5, h6, p, span, a, li, button, input, textarea {
-            unicode-bidi: embed;
-            font-feature-settings: "calt" 1, "liga" 1, "clig" 1, "kern" 1;
-            text-rendering: optimizeLegibility;
-            letter-spacing: 0;
-            word-spacing: 0;
-        }
-        
-        /* Language Switcher - Inside Header */
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .language-switcher {
-            display: flex;
-            flex-direction: row;
-            gap: 0.8rem;
-            align-items: center;
-        }
-        
-        .lang-btn {
-            border: 1px solid rgba(127, 63, 237, 0.3);
-            background: rgba(15, 21, 36, 0.6);
-            color: #c3c7d9;
-            padding: 0.6rem 1.2rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 700;
-            font-size: 1.4rem;
-            backdrop-filter: blur(10px);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .lang-btn:hover {
-            transform: translateY(-2px);
-            border-color: rgba(127, 63, 237, 0.6);
-            color: #fff;
-            box-shadow: 0 5px 15px rgba(127, 63, 237, 0.4);
-        }
-        
-        .lang-btn.active {
-            background: linear-gradient(135deg, #7f3fed, #ba42ff);
-            border-color: transparent;
-            color: #fff;
-            box-shadow: 0 0 20px rgba(127, 63, 237, 0.6);
-        }
-        
-        /* Mobile responsive */
-        @media (max-width: 768px) {
-            .language-switcher {
-                position: absolute;
-                top: 7rem;
-                left: 50%;
-                transform: translateX(-50%);
-                z-index: 999;
-            }
-            
-            .header .navbar.active ~ .language-switcher {
-                top: auto;
-                bottom: 2rem;
-            }
-        }
-
-        /* RTL Specific Fixes */
-        .header .navbar ul {
-            direction: rtl;
-        }
-        
-        .hero-content {
-            text-align: center;
-        }
-        
-        .hero-title,
-        .hero-title-line {
-            unicode-bidi: embed;
-            font-feature-settings: "calt" 1, "liga" 1;
-        }
-        
-        .about .content,
-        .about .content p {
-            text-align: right;
-            direction: rtl;
-            unicode-bidi: embed;
-        }
-        
-        .services-grid {
-            direction: rtl;
-        }
-        
-        .service-item {
-            text-align: center;
-        }
-        
-        .service-item h6 {
-            unicode-bidi: embed;
-        }
-        
-        .team .row {
-            direction: rtl;
-        }
-        
-        .footer-container {
-            direction: rtl;
-        }
-        
-        .footer-col ul {
-            text-align: right;
-        }
-        
-        .contact-form input,
-        .contact-form textarea {
-            text-align: right;
-            direction: rtl;
-            unicode-bidi: embed;
-        }
-        
-        /* Ensure heading text connects properly */
-        .heading {
-            unicode-bidi: embed;
-            font-feature-settings: "calt" 1, "liga" 1, "clig" 1;
-        }
-    </style>
+    /* Language Switcher - Inside Header */
+    .header {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+    }
+    
+    .language-switcher {
+      position: relative !important;
+      top: auto !important;
+      right: auto !important;
+      left: auto !important;
+      transform: none !important;
+      display: flex !important;
+      flex-direction: row !important;
+      gap: 0.8rem !important;
+      align-items: center !important;
+    }
+    
+    .lang-btn {
+      border: 1px solid rgba(127, 63, 237, 0.3) !important;
+      background: rgba(15, 21, 36, 0.6) !important;
+      color: #c3c7d9 !important;
+      padding: 0.6rem 1.2rem !important;
+      border-radius: 8px !important;
+      cursor: pointer !important;
+      font-weight: 700 !important;
+      font-size: 1.4rem !important;
+      backdrop-filter: blur(10px) !important;
+      text-decoration: none !important;
+      transition: all 0.3s ease !important;
+    }
+    
+    .lang-btn:hover {
+      transform: translateY(-2px) !important;
+      border-color: rgba(127, 63, 237, 0.6) !important;
+      color: #fff !important;
+      box-shadow: 0 5px 15px rgba(127, 63, 237, 0.4) !important;
+    }
+    
+    .lang-btn.active {
+      background: linear-gradient(135deg, #7f3fed, #ba42ff) !important;
+      border-color: transparent !important;
+      color: #fff !important;
+      box-shadow: 0 0 20px rgba(127, 63, 237, 0.6) !important;
+    }
+    
+    /* Mobile responsive */
+    @media (max-width: 768px) {
+      .language-switcher {
+        position: absolute !important;
+        top: 7rem !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        z-index: 999 !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -454,7 +344,7 @@
                 <h3>Bilind Bjar</h3>
                 <span>مطور ويب</span>
                 <div class="icons">
-                    <a href="/cdn-cgi/l/email-protection#3e5c52505a5c545f4c0e097e59535f5752105d5153"><i class="fas fa-envelope"></i></a>
+                    <a href="mailto:info@novatech.com"><i class="fas fa-envelope"></i></a>
                     <a href="https://wa.me/9647507308005"><i class="fab fa-whatsapp"></i></a>
                     <a href="https://www.instagram.com/blndbjar1?igsh=MXdhbzBuY2o4MXo0Mw=="><i class="fab fa-instagram"></i></a>
                     <a href="https://www.linkedin.com/"><i class="fab fa-linkedin"></i></a>
@@ -472,7 +362,7 @@
                 <span>مطور ذكاء وويب</span>
                 <div class="icons">
                     <a href="https://wa.me/9647502365028"><i class="fab fa-whatsapp"></i></a>
-                    <a href="/cdn-cgi/l/email-protection#bdf0d8c9d4d3d0d8d6d48484fddad0dcd4d193ded2d0"><i class="fas fa-envelope"></i></a>
+                    <a href="mailto:info@novatech.com"><i class="fas fa-envelope"></i></a>
                     <a href="https://www.instagram.com/metin_amedi?igsh=N3lncThuaGN4MjB3&utm_source=qr"><i class="fab fa-instagram"></i></a>
                     <a href="https://www.linkedin.com/in/matin-maki-2b6b74326/"><i class="fab fa-linkedin"></i></a>
                 </div>
@@ -556,7 +446,7 @@
             <h4>التواصل</h4>
             <ul class="footer-contact">
                 <li><i class="fas fa-map-marker-alt"></i> <span>دهوك، كردستان</span></li>
-                <li><i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2947465f485d4c4a41694e44484045074a4644">[email&#160;protected]</a></li>
+                <li><i class="fas fa-envelope"></i> <a href="mailto:info@novatech.com">info@novatech.com</a></li>
                 <li><i class="fas fa-phone"></i> +964 750 000 0000</li>
             </ul>
 
@@ -578,7 +468,7 @@
 <a href="#" class="back-to-top"><i class="ion-ios-arrow-up"></i></a>
 
 <!-- SCRIPTS -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/stars.js"></script>
+<script src="js/stars.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="js/novaRing.js"></script>
 
@@ -730,3 +620,112 @@
       window.scrollTo({ top, behavior: "smooth" });
     });
 </script>
+
+<!-- 3D SCROLL ANIMATION -->
+<script>
+(function() {
+    'use strict';
+    
+    console.log('🚀 Starting 3D Animation...');
+    
+    window.addEventListener('load', function() {
+        
+        const aboutSection = document.querySelector('.about');
+        const aboutHeading = document.querySelector('.about .heading');
+        const content = document.querySelector('.about .row .content');
+        const featureCards = document.querySelectorAll('.feature-card');
+
+        console.log('📍 About Section:', aboutSection);
+        console.log('📍 About Heading:', aboutHeading);
+        console.log('📍 Content:', content);
+        console.log('📍 Feature Cards:', featureCards.length);
+
+        if (!aboutSection || !aboutHeading) {
+            console.error('❌ Elements not found!');
+            return;
+        }
+
+        function checkScroll() {
+            const triggerBottom = window.innerHeight * 0.8;
+
+            if (aboutHeading) {
+                const rect = aboutHeading.getBoundingClientRect();
+                if (rect.top < triggerBottom) {
+                    aboutHeading.classList.add('visible');
+                    console.log('✅ Heading visible');
+                }
+            }
+
+            if (content) {
+                const rect = content.getBoundingClientRect();
+                if (rect.top < triggerBottom) {
+                    content.classList.add('visible');
+                    console.log('✅ Content visible');
+                }
+            }
+
+            featureCards.forEach((card, i) => {
+                const rect = card.getBoundingClientRect();
+                if (rect.top < triggerBottom) {
+                    card.classList.add('visible');
+                    console.log('✅ Card ' + i + ' visible');
+                }
+            });
+        }
+
+        function parallaxEffect() {
+            if (!aboutSection) return;
+
+            const rect = aboutSection.getBoundingClientRect();
+            const scrollProgress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+
+            if (scrollProgress >= 0 && scrollProgress <= 1) {
+                const x = (scrollProgress - 0.5) * 100;
+                const y = (scrollProgress - 0.5) * 100;
+
+                aboutSection.style.setProperty('--scroll-x', x + 'px');
+                aboutSection.style.setProperty('--scroll-y', y + 'px');
+                aboutSection.classList.add('scrolled');
+            }
+        }
+
+        let ticking = false;
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                window.requestAnimationFrame(function() {
+                    checkScroll();
+                    parallaxEffect();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        featureCards.forEach(function(card) {
+            card.addEventListener('mousemove', function(e) {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                card.style.transform = 'translateZ(30px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) scale(1.05)';
+            });
+
+            card.addEventListener('mouseleave', function() {
+                card.style.transform = '';
+            });
+        });
+
+        console.log('🔄 Running initial check...');
+        setTimeout(function() {
+            checkScroll();
+        }, 100);
+        
+    });
+})();
+</script>
+</body>
+</html>

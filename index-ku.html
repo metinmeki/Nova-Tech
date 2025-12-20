@@ -28,174 +28,64 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <style>
-        * {
-            font-feature-settings: "calt" 1, "liga" 1, "clig" 1;
-            -webkit-font-feature-settings: "calt" 1, "liga" 1, "clig" 1;
-            -moz-font-feature-settings: "calt" 1, "liga" 1, "clig" 1;
-        }
-
-        body {
-            font-family: 'Cairo', 'Almarai', 'Tajawal', 'Amiri', sans-serif !important;
-            direction: rtl;
-            text-align: right;
-            unicode-bidi: embed;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        
-        /* Force Kurdish fonts everywhere */
-        * {
-            font-family: 'Cairo', 'Almarai', 'Tajawal', sans-serif !important;
-        }
-        
-        /* إصلاح الحدود الزخرفية في RTL - إخفائها تماماً */
-        .heading::before,
-        .heading::after,
-        .section-head h1::before,
-        .section-head h1::after,
-        .section-head-1 h4::before,
-        .section-head-1 h4::after {
-            display: none !important;
-        }
-        
-        /* تأكد من توسيط العناوين */
-        .section-head-1 {
-            text-align: center;
-            width: 100%;
-        }
-        
-        .section-head-1 h4 {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        /* Fix Arabic/Kurdish text rendering */
-        h1, h2, h3, h4, h5, h6, p, span, a, li, button, input, textarea {
-            unicode-bidi: embed;
-            font-feature-settings: "calt" 1, "liga" 1, "clig" 1, "kern" 1;
-            text-rendering: optimizeLegibility;
-            letter-spacing: 0;
-            word-spacing: 0;
-        }
-        
-        /* Language Switcher - Inside Header */
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .language-switcher {
-            display: flex;
-            flex-direction: row;
-            gap: 0.8rem;
-            align-items: center;
-        }
-        
-        .lang-btn {
-            border: 1px solid rgba(127, 63, 237, 0.3);
-            background: rgba(15, 21, 36, 0.6);
-            color: #c3c7d9;
-            padding: 0.6rem 1.2rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 700;
-            font-size: 1.4rem;
-            backdrop-filter: blur(10px);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .lang-btn:hover {
-            transform: translateY(-2px);
-            border-color: rgba(127, 63, 237, 0.6);
-            color: #fff;
-            box-shadow: 0 5px 15px rgba(127, 63, 237, 0.4);
-        }
-        
-        .lang-btn.active {
-            background: linear-gradient(135deg, #7f3fed, #ba42ff);
-            border-color: transparent;
-            color: #fff;
-            box-shadow: 0 0 20px rgba(127, 63, 237, 0.6);
-        }
-        
-        /* Mobile responsive */
-        @media (max-width: 768px) {
-            .language-switcher {
-                position: absolute;
-                top: 7rem;
-                left: 50%;
-                transform: translateX(-50%);
-                z-index: 999;
-            }
-            
-            .header .navbar.active ~ .language-switcher {
-                top: auto;
-                bottom: 2rem;
-            }
-        }
-
-        /* RTL Specific Fixes */
-        .header .navbar ul {
-            direction: rtl;
-        }
-        
-        .hero-content {
-            text-align: center;
-        }
-        
-        .hero-title,
-        .hero-title-line {
-            unicode-bidi: embed;
-            font-feature-settings: "calt" 1, "liga" 1;
-        }
-        
-        .about .content,
-        .about .content p {
-            text-align: right;
-            direction: rtl;
-            unicode-bidi: embed;
-        }
-        
-        .services-grid {
-            direction: rtl;
-        }
-        
-        .service-item {
-            text-align: center;
-        }
-        
-        .service-item h6 {
-            unicode-bidi: embed;
-        }
-        
-        .team .row {
-            direction: rtl;
-        }
-        
-        .footer-container {
-            direction: rtl;
-        }
-        
-        .footer-col ul {
-            text-align: right;
-        }
-        
-        .contact-form input,
-        .contact-form textarea {
-            text-align: right;
-            direction: rtl;
-            unicode-bidi: embed;
-        }
-        
-        /* Ensure heading text connects properly */
-        .heading {
-            unicode-bidi: embed;
-            font-feature-settings: "calt" 1, "liga" 1, "clig" 1;
-        }
-    </style>
+    /* Language Switcher - Inside Header */
+    .header {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+    }
+    
+    .language-switcher {
+      position: relative !important;
+      top: auto !important;
+      right: auto !important;
+      left: auto !important;
+      transform: none !important;
+      display: flex !important;
+      flex-direction: row !important;
+      gap: 0.8rem !important;
+      align-items: center !important;
+    }
+    
+    .lang-btn {
+      border: 1px solid rgba(127, 63, 237, 0.3) !important;
+      background: rgba(15, 21, 36, 0.6) !important;
+      color: #c3c7d9 !important;
+      padding: 0.6rem 1.2rem !important;
+      border-radius: 8px !important;
+      cursor: pointer !important;
+      font-weight: 700 !important;
+      font-size: 1.4rem !important;
+      backdrop-filter: blur(10px) !important;
+      text-decoration: none !important;
+      transition: all 0.3s ease !important;
+    }
+    
+    .lang-btn:hover {
+      transform: translateY(-2px) !important;
+      border-color: rgba(127, 63, 237, 0.6) !important;
+      color: #fff !important;
+      box-shadow: 0 5px 15px rgba(127, 63, 237, 0.4) !important;
+    }
+    
+    .lang-btn.active {
+      background: linear-gradient(135deg, #7f3fed, #ba42ff) !important;
+      border-color: transparent !important;
+      color: #fff !important;
+      box-shadow: 0 0 20px rgba(127, 63, 237, 0.6) !important;
+    }
+    
+    /* Mobile responsive */
+    @media (max-width: 768px) {
+      .language-switcher {
+        position: absolute !important;
+        top: 7rem !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        z-index: 999 !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -627,7 +517,7 @@
     const typedTextSpan = document.querySelector(".typed-text");
     const cursorSpan = document.querySelector(".cursor");
 
-    // النصوص البادينية للكتابة المتحركة
+    // النصوص الكردية للكتابة المتحركة
     let textArray = [
         "ژ دهۆکێڤە — بو جیهانێ",
         "پەرەپێدان • ژیرا دەستکرد",
